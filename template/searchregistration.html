@@ -1,0 +1,28 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="container-fluid bg-dark text-uppercase">
+    <div class="container  bg-dark text-primary text-center h-7 display-1 fw-bold">
+        search By registration No
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <!-- name ="inputbatchtime" in url  -->
+        <div  class="justify-content-center input-group mb-3">
+            <span class=" input-group-text"> 🔍 REGISTRATION NO</span>
+            <input type="text" name="registrationno" id="">
+            <input type="submit" value="CHECK" class="btn btn-info">
+        </div>
+    </form>
+</div>
+
+    <br><br><br><br><br><br>
+
+<br>
+{% endblock %}

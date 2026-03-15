@@ -1,0 +1,23 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <select name="" id="">
+            <option value="">12AM</option>
+            <option value="">1 PM</option>
+            <option value="">Ramesh Kumar data</option>
+            <option value="">non</option>
+        </select>
+        <br>
+        <input type="submit" value="OK">
+    </form>
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}

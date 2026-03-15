@@ -1,0 +1,52 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Submit Student Fee</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Student Info -->
+                    <div class="mb-3">
+                        <p><strong>Name:</strong> {{ allfiled.name }}</p>
+                        <p><strong>Registration No:</strong> {{ allfiled.registrationno }}</p>
+                        <p><strong>Total Fee:</strong> ₹ {{ allfiled.fee }}</p>
+                        <p><strong>Paid Fee:</strong> ₹ {{ allfiled.paidfee }}</p>
+                        <p class="text-danger">
+                            <strong>Remaining Fee:</strong> ₹ {{ allfiled.remaningfee }}
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <!-- Fee Form -->
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Enter Fee Amount</label>
+                            <input type="number" name="newfee" class="form-control" 
+                                   placeholder="Enter amount" required min="0">
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">
+                                Submit Fee
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

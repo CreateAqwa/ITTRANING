@@ -1,0 +1,82 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3 class="text-center mb-4 fw-bold text-danger">
+        Pending Fee Students
+    </h3>
+
+    <div class="row g-4">
+
+        {% for b in data %}
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card shadow-lg border-0 h-100">
+
+                <!-- Student Image -->
+                <div class="text-center mt-3">
+                    <img src="{{ b.Photo.url }}" 
+                         class="rounded-circle border border-3 border-primary"
+                         width="120" height="120"
+                         style="object-fit: cover;">
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <h5 class="text-center fw-bold text-primary mb-3">
+                        {{ b.name }}
+                    </h5>
+
+                    <ul class="list-group list-group-flush small">
+
+                        <li class="list-group-item">
+                            <strong>Registration:</strong> {{ b.registrationno }}
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Father:</strong> {{ b.fathername }}
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Mobile:</strong> {{ b.mobno }}
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Course:</strong> {{ b.course }}
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Total Fee:</strong> ₹ {{ b.fee }}
+                        </li>
+
+                        <li class="list-group-item text-danger fw-bold">
+                            Remaining Fee: ₹ {{ b.remaningfee }}
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Card Footer Buttons -->
+                <div class="card-footer bg-white text-center">
+
+      
+                        
+                    <a href="/submitfee2/{{b.registrationno}}" 
+                       class="btn btn-sm btn-primary px-3">
+                        Update
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

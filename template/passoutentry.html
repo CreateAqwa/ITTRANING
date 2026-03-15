@@ -1,0 +1,50 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<br>
+<div class="container-fluid bg-dark">
+    <div class="container  bg-dark text-primary text-center h-7 display-1 fw-bold">
+        PASSOUT STUDENT ENTRY
+    </div>
+</div>
+<br>
+<div class="container">
+    
+    <script>
+        function validate()
+        {
+        var data=document.getElementById('data').value;
+		if(data=="")
+		{
+            alert("PROVIDE STUDENT REGISTRATION NO ")
+				
+		}
+        else
+        {
+            alert("DATA UNDER CHECKING IF REGISTRATION NUMBER IS RIGHT SO DATA SENT PASSOUT STUDENT")
+            // document.getElementById('E_name').innerHTML="aaaaDONEaaaaa";
+            // return false
+        }
+        }
+    </script>
+    <div align="center"><font id="E_name" color="red"></font></div>
+    <form method="POST" name="validation_check" onsubmit="validate()">
+        {% csrf_token %}
+        <div  class="justify-content-center input-group mb-3">
+            <span class=" input-group-text"> 🔍ENTER REGISTRATION NO</span>
+            <input   type="text" name="deletedatabyreg" id="data">
+
+            <input  type="submit" value="Send Request" class="btn btn-info">
+            
+        </div>
+        
+    </form>
+    <div class="row">
+        
+    </div>
+</div>
+
+<br><br><br>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<br>
+<div class="container-fluid bg-dark mb-3 text-uppercase">
+    <div class="container  bg-dark text-primary text-center h-7 display-1 fw-bold">
+        Search By Name
+    </div>
+</div>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <!-- name ="inputbatchtime" in url  -->
+        <div  class="justify-content-center input-group mb-3">
+            <span class=" input-group-text"> 🔍SEARCH BY NAME</span>
+            <input type="text" name="byname" id="">
+            <input type="submit" value="VIEW BY NAME" class="btn btn-info">
+        </div>
+    </form>
+</div>
+
+    <br><br><br><br><br><br>
+
+<br>
+{% endblock %}

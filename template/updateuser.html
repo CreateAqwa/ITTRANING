@@ -1,0 +1,109 @@
+{% include 'head.html' %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">UPDATE STUDENT</h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="text-center mb-4">
+                    <img src="../{{data.Photo}}" 
+                         class="rounded shadow"
+                         style="width:150px;height:180px;object-fit:cover;">
+                    <div class="mt-2 text-muted">
+                        Registration ID: <strong>{{data.registrationno}}</strong>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label">Student Name</label>
+                        <input type="text" name="name" class="form-control" value="{{data.name}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Father Name</label>
+                        <input type="text" name="fathername" class="form-control" value="{{data.fathername}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Mother Name</label>
+                        <input type="text" name="mothername" class="form-control" value="{{data.mothername}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Mobile No</label>
+                        <input type="text" name="mobno" class="form-control" value="{{data.mobno}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">City</label>
+                        <input type="text" name="city" class="form-control" value="{{data.city}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Gender</label>
+                        <input type="text" name="gender" class="form-control" value="{{data.gender}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Course</label>
+                        <input type="text" name="course" class="form-control" value="{{data.course}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Batch Time</label>
+                        <input type="text" name="batchtime" class="form-control" value="{{data.batchtime}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Total Fee</label>
+                        <input type="number" name="fee" class="form-control" value="{{data.fee}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Remaining Fee</label>
+                        <input type="number" name="remaningfee" class="form-control" value="{{data.remaningfee}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Join Date</label>
+                        <input type="text" name="Date_Admission" class="form-control" value="{{data.Date_Admission}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Registration Date</label>
+                        <input type="text" class="form-control" value="{{data.DateNow}}" disabled>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Message</label>
+                        <textarea name="message" class="form-control" rows="3">{{data.message}}</textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Update Photo</label>
+                        <input type="file" name="Photo" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success px-5">UPDATE</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

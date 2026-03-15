@@ -1,0 +1,31 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+
+
+
+
+
+<form method="POST" class="m-5">
+    {% csrf_token %}
+    fname
+    <input type="text" name="fname" class='form-control w-50'>
+    lname
+    <input type="text" name="lname" class='form-control w-50'>
+    number
+    <input type="number" name="number" class='form-control w-50'>
+    password
+    <input type="password" name="password" class='form-control w-50'>
+     
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} w-50" role="alert" id="alo" >
+        {{message}}
+    </div>
+    {% endfor %}
+    <input type="submit" class='form-control w-50 success'>
+</form>
+
+
+{% endblock %}

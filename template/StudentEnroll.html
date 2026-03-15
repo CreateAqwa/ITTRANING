@@ -1,0 +1,105 @@
+{% include "head.html" %}
+<div class="container mt-5">
+    <h1 class="text-center bg-black text-white p-3">ENROLL NOW</h1>
+    <div class="row align-items-stretch">
+        <div class="col-md-6 mb-3">
+        <div class=" h-100 text-center btn btn-warning w-100 text-uppercase d-flex flex-column justify-content-center ">
+            <h3 class="fs-2 btn fw-bolder">Pehle istemaal karein,<br><br> phir vishwaas karein. <br> <br> Try our</h3>
+            <h2 class="btn btn-success fw-bolder">Free Demo Classes</h2>
+            <h2 class="btn fs-1 fw-bolder">Now</h2>
+        </div>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="col-md-6">
+            {% csrf_token %}
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">Book Your Class</h3>
+                <p class="text-muted">Fill the form below and start your learning journey today.</p>
+            </div>
+
+        <div class="input-group mb-3">
+            <label for="browser" class="input-group-text text-black" style="font-size: small;" >Choose Your Course: <label for="" class="text-danger fw-bold">&nbsp; *</label></label>
+        <input class="form-control" list="browsers" name="course" id="browser" required oninvalid="this.setCustomValidity('Please Select Yoour Course')"
+                    oninput="this.setCustomValidity('')">
+            <datalist id="browsers">
+                <option value="Basic_Of_Computers">Basic Of Computers</option>
+                <option value="PYTON">Python</option>
+                <option value="DJANGO">Django</option>
+                <option value="Node_js">Node-Js</option>
+                <option value="React_js">React js</option>
+                <option value="Html_Css_Js">Html Css Js</option>
+            </datalist>
+
+            <span class="input-group-text " style="font-size: small;">BATCHTIME</span>
+                <select class="form-control" name="batchtime" id="">
+                        <option value="10AM">10am</option>
+                        <option value="11AM">11am</option>
+                        <option value="12AM">12am</option>
+                        <option value="1PM">1pm</option>
+                        <option value="2PM">2pm</option>
+                        <option value="3PM">3pm</option>
+                        <option value="4PM">4pm</option>
+                        <option value="5PM">5pm</option>
+                        <option value="6PM">6pm</option>
+                        <option value="7PM">7pm</option>
+                        <option value="8PM">8pm</option>
+                        <option value="9PM">9pm</option>
+                </select>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+            <span class=" input-group-text" style="font-size: small;">NAME <label for="" class="text-danger fw-bold">&nbsp; *</label></span>
+            <input class="form-control" type="text" name="name" required>
+        </div>    
+        <div class="input-group mb-3">
+            <span class="input-group-text" style="font-size: small;">MOBILE NO  <label for="" class="text-danger fw-bolder">&nbsp;*</label></span>
+            <input type="text" name="mobno" class="form-control" required>
+        </div>
+        <div class="input-group mb-3 ">
+        <label class="input-group-text">Gender</label>
+            <div class= "form-control p-2">
+                <input type="radio" name="gender" value="MALE" required> Male &ensp;
+                <input type="radio" name="gender" value="FEMALE"> Female &ensp;
+                <input type="radio" name="gender" value="OTHER"> Other &ensp;
+            </div>
+        </div>
+        <div class="input-group mb-3 ">
+            <span class="input-group-text ">PHOTO <label for="" class="text-danger fw-bolder">&nbsp;*</label></span>
+            <input name="Photo" class="form-control" type="file" required><br>
+        </div>
+        <div class="input-group mb-3 ">
+
+            <span class="input-group-text">FATHER NAME</span>
+            <input type="text" name="fathername" class="form-control">
+        </div>
+        <div class="input-group mb-3 ">
+
+            <span class="input-group-text">MOTHER NAME</span>
+            <input type="text" name="mothername" class="form-control">
+        </div>
+
+        <div class="input-group mb-3 ">
+            <div class="input-group-text" style="width:100%;height:fit-content;">
+                <span class="">State</span>
+                <select name="city" class="form-select form-select-sm form-control">
+                    <option value="">Select State</option>
+                    {% for c in cityy %}
+                    <option>{{c}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            
+        </div><br>
+
+            
+        
+            
+            <input name="" class="form-control btn btn-success" type="submit"><br>
+        </form>
+    </div>
+</div>
+<br><br><br><br>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,187 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<div class="card shadow-lg border-0">
+
+<div class="card-header bg-dark text-white text-center">
+<h3>Student Admission Form</h3>
+</div>
+
+<div class="card-body">
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<!-- Course + Batch -->
+
+<div class="row mb-3">
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Course *</label>
+<input class="form-control" list="courseList" name="course" required>
+<datalist id="courseList">
+<option value="Basic_Of_Computers">
+<option value="Python">
+<option value="Django">
+<option value="Node_js">
+<option value="React_js">
+<option value="Html_Css_Js">
+</datalist>
+</div>
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Batch Time</label>
+<select class="form-control" name="batchtime">
+<option>10AM</option>
+<option>11AM</option>
+<option>12PM</option>
+<option>1PM</option>
+<option>2PM</option>
+<option>3PM</option>
+<option>4PM</option>
+<option>5PM</option>
+<option>6PM</option>
+<option>7PM</option>
+<option>8PM</option>
+<option>9PM</option>
+</select>
+</div>
+
+</div>
+
+
+<!-- Name + Mobile -->
+
+<div class="row mb-3">
+
+<div class="col-md-4">
+<label class="form-label fw-bold">Name *</label>
+<input type="text" name="name" class="form-control" required>
+</div>
+
+<div class="col-md-4">
+<label class="form-label fw-bold">Mobile *</label>
+<input type="text" name="mobno" class="form-control" required>
+</div>
+
+<div class="col-md-4">
+<label class="form-label fw-bold">Gender</label><br>
+
+<input type="radio" name="gender" value="MALE"> Male
+<input type="radio" name="gender" value="FEMALE"> Female
+<input type="radio" name="gender" value="OTHER"> Other
+
+</div>
+
+</div>
+
+
+<!-- Parents -->
+
+<div class="row mb-3">
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Father Name</label>
+<input type="text" name="fathername" class="form-control">
+</div>
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Mother Name</label>
+<input type="text" name="mothername" class="form-control">
+</div>
+
+</div>
+
+
+<!-- State -->
+
+<div class="row mb-3">
+
+<div class="col-md-6">
+<label class="form-label fw-bold">State</label>
+
+<select name="city" class="form-control">
+
+<option value="">Select State</option>
+
+{% for c in cityy %}
+<option>{{c}}</option>
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Photo *</label>
+<input type="file" name="Photo" class="form-control" required>
+</div>
+
+</div>
+
+
+<!-- Fee -->
+
+<div class="row mb-3">
+
+
+
+
+<div class="col-md-6">
+    <span class="form-label fw-bold">TOTAL FEE</span>
+    <input name="fee" value="15000" class="form-control" type="number">
+</div>
+
+<div class="col-md-6">
+    <span class="form-label fw-bold">PAID FEE</span>
+    <input name="paidfee" value="0" class="form-control" type="number">
+</div>
+<!-- <div class="col-md-6">
+    <span class="form-label fw-bold">REMAINING FEE</span>
+    <input name="remaningfee" value="15000" class="form-control" type="number">
+</div> -->
+
+</div>
+
+
+
+
+<!-- Date + Message -->
+
+<div class="row mb-3">
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Admission Date</label>
+<input type="datetime-local" name="Date_Admission" class="form-control">
+</div>
+
+<div class="col-md-6">
+<label class="form-label fw-bold">Message</label>
+<textarea class="form-control" name="message" rows="2">
+Father Occupation :  Class/School :
+</textarea>
+</div>
+
+</div>
+
+
+<div class="text-center">
+
+<button class="btn btn-success px-5">
+Submit Admission
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

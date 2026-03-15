@@ -1,0 +1,34 @@
+
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+
+
+<div align='center'>
+        
+    
+    <form method="POST" >
+        {% csrf_token %}
+            Username
+            <input type="text" name="number" class='form-control w-50' >
+            
+            Password
+            <input type="password" name="password"  class='form-control w-50 mb-3'>
+        
+            <input type="submit" class="btn btn-success w-50 mb-3">   
+               {% for message in messages %}
+                <div class="text-center w-50  alert alert-{{message.tags}}" role="alert" id="alo" >
+                    {{message}}
+                </div>
+        {% endfor %}
+
+    </form>
+ 
+
+    <a href="/signup"><p >--------------Signup-------------- </p></a>
+    
+
+</div>
+
+{% endblock %}
