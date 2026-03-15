@@ -1,405 +1,931 @@
-{% include "head.html"%}
-
-
-
-
-
-<div style="margin-top:-8%;" class="relative bg-gradient-to-r from-blue-900 to-gray-700  flex items-center justify-center overflow-hidden">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENC INDIA - Professional IT Training</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
         
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div class="absolute top-20 left-20 w-16 h-16 bg-blue-400 rounded-full opacity-20 floating" style="animation-delay: 0s;"></div>
-            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-purple-400 rounded-full opacity-20 floating" style="animation-delay: 1s;"></div>
-            <div class="absolute bottom-1/4 left-1/3 w-20 h-20 bg-indigo-400 rounded-full opacity-20 floating" style="animation-delay: 2s;"></div>
-        </div>
-        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-            <div class="mb-8 pulsing " style="margin-top: 7rem;">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in">GENC INDIA</h1>
-                <p class="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in" style="animation-delay: 0.3s;">Professional IT Training</p>
-            </div>
+        body {
+            overflow-x: hidden;
+            background-color: #f8fafc;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulsing {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        /* Course Cards */
+        .course-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.3);
+            background: white;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            opacity: 0.6;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        /* Cards */
+        .custom-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+        
+        .custom-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .custom-card img {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .custom-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+            margin: 4rem 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffd700;
+        }
+        
+        /* Buttons */
+        .btn-custom {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            color: white;
+        }
+        
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-custom:hover::before {
+            left: 100%;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 100px;
+            color: #ff6b6b;
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+        }
+        
+        .goldstar {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Image Hover Effects */
+        .image-wrapper {
+            overflow: hidden;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-wrapper:hover::after {
+            opacity: 1;
+        }
+        
+        /* Floating Shapes */
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+            }
             
-            <!-- Courses Grid with hover animations -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-3">
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 3rem !important;
+            }
+        }
+
+
+
+        /* Extra Animations */
+.grayscale {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+.grayscale:hover {
+    filter: grayscale(0%);
+}
+
+.category-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+.category-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2) !important;
+}
+
+.course-card-modern {
+    transition: all 0.4s ease;
+}
+.course-card-modern:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 45px -15px rgba(0,0,0,0.3) !important;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navbar will be included via head.html -->
+    {% include "head.html" %}
+
+    <!-- Hero Section with Floating Elements -->
+     
+    <div class="hero-section relative flex items-center justify-center overflow-hidden">
+        <!-- Floating Shapes -->
+        <div class="floating-shape w-64 h-64 top-10 left-10 floating"></div>
+        <div class="floating-shape w-96 h-96 bottom-20 right-20 floating" style="animation-delay: 2s;"></div>
+        <div class="floating-shape w-48 h-48 top-1/2 left-1/4 floating" style="animation-delay: 1s;"></div>
+        
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 py-20">
+            <div class="mb-12" style="margin-top: 7rem;">
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-6 animate-fade-in" style="text-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    GENC INDIA
+                </h1>
+                <p class="text-2xl md:text-3xl text-gray-200 mb-12 animate-fade-in" style="animation-delay: 0.3s; text-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    Professional IT Training
+                </p>
+            </div>
+
+            <!-- Current ke saath yeh add karo -->
+<div class="search-bar mt-8 max-w-2xl mx-auto">
+    <div class="flex bg-white rounded-full shadow-2xl p-1">
+        <input type="text" placeholder="Search for courses (Python, Web Dev, AI, etc.)" 
+               class="flex-1 px-6 py-3 rounded-full focus:outline-none">
+        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 rounded-full font-semibold hover:shadow-lg transition">
+            Search
+        </button>
+    </div>
+</div>
+
+<!-- Popular Tags -->
+<div class="flex flex-wrap justify-center gap-2 mt-4 mb-4 pb-5">
+    <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Python</span>
+    <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Web Development</span>
+    <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Data Science</span>
+    <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">AI/ML</span>
+</div>
+            
+            <!-- Courses Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto mb-8 px-4">
                 <!-- Basics of Computer -->
-                <div class="course-card bg-white bg-opacity-90 rounded-xl p-6 shadow-xl transform transition duration-500 hover:shadow-2xl">
-                    <div class="text-blue-600 mb-4 animate-bounce" style="animation-delay: 0.4s;">
-                        <i data-feather="monitor" class="w-12 h-12 mx-auto"></i>
+                <div class="course-card rounded-2xl p-8 shadow-2xl transform transition duration-500 hover:shadow-2xl text-center">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="monitor" class="w-16 h-16 mx-auto" style="stroke-width: 1.5;"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Basics of Computer</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Basics of Computer</h3>
                     <p class="text-gray-600 mb-4">Master computer fundamentals from scratch</p>
-                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full inline-block">
+                    <span class="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold rounded-full">
                         Beginner Friendly
-                    </div>
+                    </span>
                 </div>
                 
                 <!-- Ethical Hacking -->
-                <div class="course-card bg-white bg-opacity-90 rounded-xl p-6 shadow-xl transform transition duration-500 hover:shadow-2xl">
-                    <div class="text-blue-600 mb-4 animate-bounce" style="animation-delay: 0.6s;">
-                        <i data-feather="shield" class="w-12 h-12 mx-auto"></i>
+                <div class="course-card rounded-2xl p-8 shadow-2xl transform transition duration-500 hover:shadow-2xl text-center">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="shield" class="w-16 h-16 mx-auto" style="stroke-width: 1.5;"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ethical Hacking</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Ethical Hacking</h3>
                     <p class="text-gray-600 mb-4">Master cybersecurity with hands-on training</p>
-                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full inline-block">
+                    <span class="inline-block px-4 py-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-sm font-semibold rounded-full">
                         Industry Certified
-                    </div>
+                    </span>
                 </div>
                 
                 <!-- Python -->
-                <div class="course-card bg-white bg-opacity-90 rounded-xl p-6 shadow-xl transform transition duration-500 hover:shadow-2xl">
-                    <div class="text-blue-600 mb-4 animate-bounce" style="animation-delay: 0.8s;">
-                        <i data-feather="code" class="w-12 h-12 mx-auto"></i>
+                <div class="course-card rounded-2xl p-8 shadow-2xl transform transition duration-500 hover:shadow-2xl text-center">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="code" class="w-16 h-16 mx-auto" style="stroke-width: 1.5;"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Python</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Python</h3>
                     <p class="text-gray-600 mb-4">From basics to advanced programming</p>
-                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full inline-block">
+                    <span class="inline-block px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-semibold rounded-full">
                         Practical Training
-                    </div>
+                    </span>
                 </div>
                 
                 <!-- ReactJS -->
-                <div class="course-card bg-white bg-opacity-90 rounded-xl p-6 shadow-xl transform transition duration-500 hover:shadow-2xl">
-                    <div class="text-blue-600 mb-4 animate-bounce" style="animation-delay: 1s;">
-                        <i data-feather="layers" class="w-12 h-12 mx-auto"></i>
+                <div class="course-card rounded-2xl p-8 shadow-2xl transform transition duration-500 hover:shadow-2xl text-center">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="layers" class="w-16 h-16 mx-auto" style="stroke-width: 1.5;"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">ReactJS</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">ReactJS</h3>
                     <p class="text-gray-600 mb-4">Build modern web applications</p>
-                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full inline-block">
+                    <span class="inline-block px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-full">
                         Job Ready
-                    </div>
-                </div>
-            </div>
-
-            
-            <!-- <div class="mt-12 animate-fade-in" style="animation-delay: 1.2s;">
-                <a href="#courses" class="bg-white text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition duration-300 inline-flex items-center transform hover:scale-105">
-                    Explore All Courses <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
-                </a>
-            </div> -->
-        </div>
-    </div>
-        <!-- Courses Section
-    <section id="courses" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Featured Courses</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                Course cards would go here
-            </div>
-        </div>
-    </section>
-     -->
- <script>
-        feather.replace();
-        
-        // Add scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const animateElements = document.querySelectorAll('.animate-fade-in, .animate-fade-in-up, .animate-bounce');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-active');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animateElements.forEach(el => observer.observe(el));
-        });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-    <div class="container-fluid fulid4" >
-        <div class="row" >
-            <div class="col-md-6">
-                <div class="row">
-                    <div><label for=""></label></div><div><label for=""></label></div>
-                    <table border="0">
-                        <tr>
-                            <td>
-                                <img  class="maga" width="90%" src="https://i.ibb.co/MZtTjfr/student.png" alt=""><br>
-                                <a class="student_down_text" href="">View all Faculties →</a>
-                            </td>                            
-                            <td>
-                                <img width="100%" class="WHITE" src="https://i.ibb.co/fdhRQkZ/whitehouse.jpg" alt="">
-                            </td>
-                        </tr>
-                    </table>    
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div  class="row">
-                    <div class="col-md-12">
-                        <label style="font-size: 45px;" class="UNIVERSITY">-=-=-YOUR COMPNEY NAME-=-=-</label>
-                        <label class="undown" for="">Spearheading the Education Revolution</label>
-                        <label for="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</label>
-                        <div><label for=""></label></div>
-                        <button type="button" class="btn btn-danger">Read More &nbsp; →</button>
-                    </div>
-                 
+                    </span>
                 </div>
                 
             </div>
         </div>
+        
     </div>
-    <div><label for=""></label></div><div><label for=""></label></div>
-    <div class="container-fluid"style="position: relative;">
-        <img width="100%" src="https://i.ibb.co/fpp8rsK/manbg.png" alt="">
-    </div>
+
     
-    <div class="container-fluid" >
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-
-            </div>
-            <div class="col-md-4 manbgindex">
-                <a class="txtcolor" style="text-align: left;" href="">
-                    <label class="manbgtext" for="">CHANCELLOR'S MESSAGE</label>
-                </a>
-                    <div><label class="colorbgman" style="text-align: left;" for="">Academic excellence beyond boundaries, that's what makes MM(DU) the educational institution for the World.In fact, MM(DU) is more than just being a University, it's the engaging, intellectually vibrant place where growth-minded people share the platform...</label></div>
-                    <div><label for=""></label></div>
-                
-
-                <button type="button" class="btn btn-danger">Read More &nbsp; →</button>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row"><label class="OURLATESTNEWS" for="">OUR LATEST NEWS</label></div>
-        <div class="row">
-            <div class="col-md-3">
-                <a class="cardd" href=""><div class="card" >
-                    <img class="card-img-top" src="https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/three-little-blonde-sisters-blue-vickie-wade.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                        <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $10:00</p>
-                        <a class="hreff" href="#" >Read More&nbsp; → </a>
+    <!-- About Company Section -->
+    <div class="container my-5 py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <div class="image-wrapper rounded-4 shadow-4">
+                        <img class="img-fluid" src="https://i.ibb.co/MZtTjfr/student.png" alt="Students">
                     </div>
-                </div></a>
-            </div>
-            <div class="col-md-3">
-                <a class="cardd" href=""><div class="card" >
-                    <img class="card-img-top" src="https://keepthinkingbig.com/wp-content/uploads/2016/05/People-connecting.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                        <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $12:00</p>
-                        <a class="hreff" href="#" >Read More&nbsp; → </a>
-                    </div>
-              </div></a>
-            </div>
-            
-            <div class="col-md-3">
-                <a class="cardd" href=""><div class="card" >
-                    <img class="card-img-top" src="https://www.helpguide.org/wp-content/uploads/2020/01/Social-Media-and-Mental-Health.webp" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                        <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $12:00</p>
-                        <a class="hreff" href="#" >Read More&nbsp; → </a>
-                    </div>
-              </div></a>
-            </div>
-            <div class="col-md-3">
-                <a class="cardd" href=""><div class="card">
-                        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTW3J7wrnzpJmvfnwaJ7XOr4J_vJ45rIbJhw&s" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                            <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $12:00</p>
-                            <a class="hreff" href="#" >Read More&nbsp; → </a>
-                        </div>
-                  </div>
-                </a>
-            </div>
-            
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mapwb">
-                <label class="hreff" for="">PREPARING YOU FOR THE REAL WORLD</label>
-                <label for="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</label>
-                <div><label for=""></label></div>
-                <button type="button" class="btn btn-danger">Read More &nbsp; →</button>
-            </div>
-            <div class="col-md-6 mapwb">
-                <img width="100%" src="https://upload.wikimedia.org/wikipedia/commons/6/66/World_Map_Grayscale.png" alt="">
-            </div>
-        </div>
-        
-        <div class="row marg" >
-            
-            <div class="col-md-2"><label for=""><a class="hreff" href="">50+</a> HITACHI LABEL IN  DIFFERENT DEPARTMENT</label></div>
-
-            <div class="col-md-2"><label for=""><a class="hreff" href="">12</a> LIBRARIES  INCLIDING ONE CENTRAL LIBREARY</label></div>
-
-            <div class="col-md-2"><label for="">SMART CLASSES FULLY<a class="hreff" href=""> WI-FI</a> CAMPUS</label></div>
-
-            <div class="col-md-3"><label for="">COMFORTABLE HOSTEL ACCOMMODATION FOR <a class="hreff" href="">7000+</a> STUDENTS</label></div>
-
-            <div class="col-md-3"><label for=""><a class="hreff" href="">50,000++</a> SUCCESS STORIES & DEDICATED PLACEMENT CELL</label></div>
-            
-            
-        </div>
-        
-        
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 ">                
-                <label class="OURLATESTNEWS" for=""> &nbsp;UNIVERSITY EVENTS</label>
-                <label class="bolt" for="">&nbsp; BRING THE BEST SPEAKERS AT EVERY EVENTS</label>
-                <div><label for=""></label></div><div><label for=""></label></div>
-                <div class="container overtext">
-                    <img width="100%" src="static/images/12.jpg" alt="Snow" style="width:100%;">
-                    <div class="centered">
-                        <label class="headline" for="">Education Technology Mobile Learninig</label>
-                        <label for="">Lorem ipsum dolor sitt amet consectetur adipiscing elit. Ut Elit tellus, luctus nec ullamcorper mattis, pulviner dapibus leo. <br> <a class="card-title"  href="">Read More -> </a> </label>
+                    <div class="position-absolute bottom-0 start-0 bg-white p-4 rounded-4 shadow-lg m-4" style="backdrop-filter: blur(10px); background: rgba(255,255,255,0.9);">
+                        <a href="#" class="text-decoration-none text-dark fw-bold hover:text-primary">
+                            View all Faculties →
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div><label for=""></label></div>
-                <label class="centerm" for=""><div align=""><button type="button" class="btn btn-danger btnn">ALL EVENTS &nbsp; →</button></div></label>
-                <div class="row">
-                    <div><label for=""></label></div><div><label for=""></label></div>
-                    <div class="col-md-6" >
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="https://cdn.arstechnica.net/wp-content/uploads/2019/09/9599954147_dfbe8ede7c_k.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                                <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $10:00</p>
-                                <a class="hreff" href="#" >Read More&nbsp; → </a>
+            <div class="col-lg-6">
+                <h2 class="display-3 fw-bold mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    GENC INDIA
+                </h2>
+                <h3 class="h2 text-secondary mb-4">Spearheading the Education Revolution</h3>
+                <p class="lead text-muted mb-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <button class="btn-custom btn-lg">Read More →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Image -->
+     
+    <div class="container-fluid p-0 my-5">
+        <div class="position-relative">
+            <img class="img-fluid w-100" src="https://i.ibb.co/fpp8rsK/manbg.png" alt="Banner" style="max-height: 400px; object-fit: cover;">
+            <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                <h2 class="display-4 fw-bold">Transform Your Career</h2>
+                <p class="lead">Join thousands of successful graduates</p>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- Course Categories - Bootstrap 5 -->
+<div class="container my-5">
+    <h2 class="section-header">POPULAR CATEGORIES</h2>
+    <div class="row g-4">
+        <!-- Category 1 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm hover:shadow-lg transition">
+                <i data-feather="code" class="w-12 h-12 mx-auto text-blue-600"></i>
+                <h6 class="mt-3 fw-bold">Web Development</h6>
+                <small class="text-muted">12 Courses</small>
+            </div>
+        </div>
+        <!-- Category 2 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm">
+                <i data-feather="database" class="w-12 h-12 mx-auto text-green-600"></i>
+                <h6 class="mt-3 fw-bold">Data Science</h6>
+                <small class="text-muted">8 Courses</small>
+            </div>
+        </div>
+        <!-- Category 3 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm">
+                <i data-feather="shield" class="w-12 h-12 mx-auto text-red-600"></i>
+                <h6 class="mt-3 fw-bold">Cybersecurity</h6>
+                <small class="text-muted">6 Courses</small>
+            </div>
+        </div>
+        <!-- Category 4 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm">
+                <i data-feather="smartphone" class="w-12 h-12 mx-auto text-purple-600"></i>
+                <h6 class="mt-3 fw-bold">App Development</h6>
+                <small class="text-muted">10 Courses</small>
+            </div>
+        </div>
+        <!-- Category 5 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm">
+                <i data-feather="cloud" class="w-12 h-12 mx-auto text-blue-400"></i>
+                <h6 class="mt-3 fw-bold">Cloud Computing</h6>
+                <small class="text-muted">5 Courses</small>
+            </div>
+        </div>
+        <!-- Category 6 -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="category-card text-center p-4 bg-white rounded-3 shadow-sm">
+                <i data-feather="cpu" class="w-12 h-12 mx-auto text-gray-600"></i>
+                <h6 class="mt-3 fw-bold">AI/ML</h6>
+                <small class="text-muted">7 Courses</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Industry Partners</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Libraries</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">7000+</div>
+                        <div class="stat-label">Students</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">50k+</div>
+                        <div class="stat-label">Alumni Network</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest News Section -->
+    <div class="container my-5 py-5">
+        <h2 class="section-header">OUR LATEST NEWS</h2>
+        <div class="row g-4">
+            <!-- News Card 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="custom-card">
+                    <div class="image-wrapper">
+                        <img src="https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/three-little-blonde-sisters-blue-vickie-wade.jpg" class="card-img-top" alt="News">
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold">Wellbeing Self-Isolation Daily Drop In</h5>
+                        <p class="card-text text-muted">
+                            Date: 11 September 2021<br>
+                            Location: Arizona Grand Hall<br>
+                            Ticket: $10.00
+                        </p>
+                        <a href="#" class="text-decoration-none text-primary fw-bold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more news cards similarly -->
+        </div>
+    </div>
+
+    <!-- Events Section -->
+    <div class="container my-5 py-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="section-header text-start">UNIVERSITY EVENTS</h2>
+                <h3 class="h4 text-secondary mb-4">Bring the Best Speakers at Every Events</h3>
+                <div class="position-relative rounded-4 overflow-hidden shadow-4">
+                    <img src="static/images/12.jpg" class="img-fluid w-100" alt="Event">
+                    <div class="position-absolute bottom-0 start-0 text-white p-5" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+                        <h4 class="fw-bold">Education Technology Mobile Learning</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                        <a href="#" class="text-white text-decoration-none fw-bold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-end mb-4">
+                    <button class="btn-custom">ALL EVENTS →</button>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="custom-card">
+                            <div class="image-wrapper">
+                                <img src="https://cdn.arstechnica.net/wp-content/uploads/2019/09/9599954147_dfbe8ede7c_k.jpg" class="card-img-top" alt="Event">
                             </div>
-                      </div>
+                            <div class="card-body p-4">
+                                <h5 class="card-title fw-bold">Wellbeing Self-Isolation Daily Drop In</h5>
+                                <p class="card-text text-muted">
+                                    Date: 11 September 2021<br>
+                                    Location: Arizona Grand Hall<br>
+                                    Ticket: $10.00
+                                </p>
+                                <a href="#" class="text-decoration-none text-primary fw-bold">Read More →</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/college-1462989841.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Wellbeing Self-Isolation Daily Drop In</h5>
-                                <p class="card-text">Date: 11 September <br>2021 Location: Arizon <br>Grand Hall Ticket: $10:00</p>
-                                <a class="hreff" href="#" >Read More&nbsp; → </a>
+                        <div class="custom-card">
+                            <div class="image-wrapper">
+                                <img src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/college-1462989841.jpg" class="card-img-top" alt="Event">
                             </div>
-                      </div>
+                            <div class="card-body p-4">
+                                <h5 class="card-title fw-bold">Wellbeing Self-Isolation Daily Drop In</h5>
+                                <p class="card-text text-muted">
+                                    Date: 11 September 2021<br>
+                                    Location: Arizona Grand Hall<br>
+                                    Ticket: $10.00
+                                </p>
+                                <a href="#" class="text-decoration-none text-primary fw-bold">Read More →</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-
-    </div>
-    <div class="container-fluid red">        
-        <label style="margin-top: 2%;"  for=""> TESTIMONIALS</label>
-    </div>
-    <div class="container-fluid TESTIMONIALS">
-        <div class="container  " >
-            <div class="row">
-                <div class="col-md-4" >
-                    <label for="">
-                        <div class="card" style="width: 100%;">
-                            <div class="card-body">
-                                <table border="0">
-                                    <tr><td> <label class="goldstar" style="font-size:xx-large ;" for="">★ ★ ★ ★ ★</label></td></tr>
-                                    <tr>
-                                        <td> 
-                                            <img width="100PX" align="left"  class="rounded-circle " src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" alt="">
-                                        </td>
-                                        <td>
-                                            <h5 style="margin-left:-60px ;" class="card-title "> &nbsp; Elsa Frozen</h5>
-                                            <h6 style="margin-left:-50px ;" class="card-subtitle mb-2 text-muted"> Law Student</h6>
-                                        </td>                                        
-                                    </tr>
-                                </table>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-                <div class="col-md-4" >
-                    <label for="">
-                        <div class="card" style="width:100%;">
-                            <div class="card-body">
-                                <table border="0"  >
-                                    <tr><td > <label class="goldstar" style="font-size:xx-large ;" for="">★ ★ ★ ★ ★</label></td></tr>
-                                    <tr>
-                                        <td> 
-                                            <img width="100px" align="left"   class="rounded-circle " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBcg5OV7m4Ojt-6P7o0JwzgBcZosZwisJw0A&usqp=CAU" alt="">
-                                        </td>
-                                        <td>
-                                            <h5 style="margin-left:-60px ;" class="card-title "> &nbsp; Fred Rodriquez</h5>
-                                            <h6 style="margin-left:-50px ;" class="card-subtitle mb-2 text-muted"> Law Student</h6>
-                                        </td>
-                                    </tr>
-                        </table>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
-                    </label>
-                </div>
-                <div class="col-md-4" >
-                    <label for="">
-                        <div class="card" style="width:100%;">
-                            <div class="card-body">
-                                
-                                <table border="0"  >
-                                    <tr><td> <label class="goldstar" style="font-size:xx-large ;" for="">★ ★ ★ ★ ★</label></td></tr>
-                                    <tr>
-                                        <td> 
-                                            <img width="100px" align="left"   class="rounded-circle " src="./static/studentimage/aaa_aosMpSY.jpg" alt="">
-                                        </td>
-                                        <td>
-                                            <h5 style="margin-left:-60px ;" class="card-title"> &nbsp; SYED CYBER</h5>
-                                            <h6 style="margin-left:-50px ;" class="card-subtitle mb-2 text-muted"> Law Student</h6>
-                                        </td>
-                                        
-                                    </tr>
-                                </table>                            
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-            </div>
         </div>
     </div>
 
-
-
-    <div class="container-fluid">
+    <!-- Testimonials Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <label style="color: red; font-size: xx-large;font-weight: 900;" for="">Rolling Admissions Now Open</label>
-                    <label style="font-size: 33px;" for=""> Get In Touch Us to <br> Discuss it:</label>
-                    <div > <a href="tel:18002742240"><Button class="mybtncall">📞 &nbsp; 1800 2742 240</Button></a></div>
+            <h2 class="section-header">TESTIMONIALS</h2>
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="goldstar mb-3">★★★★★</div>
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" class="rounded-circle me-3" width="60" height="60" alt="Avatar">
+                            <div>
+                                <h5 class="fw-bold mb-0">Elsa Frozen</h5>
+                                <p class="text-muted mb-0">Law Student</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-0">"Some quick example text to build on the card title and make up the bulk of the card's content."</p>
+                    </div>
                 </div>
-                <div class="col-md-6"> 
-                    <img width="100%" src="https://i.ibb.co/PYpkkG5/3study.png" alt="">
+                <!-- Add more testimonials similarly -->
+            </div>
+        </div>
+    </div>
+
+<!-- Advanced Course Cards -->
+<div class="container my-5">
+    <h2 class="section-header">TRENDING COURSES</h2>
+    <div class="row g-4">
+        <!-- Course Card 1 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="course-card-modern bg-white rounded-4 shadow-lg overflow-hidden">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500" class="w-100" style="height: 200px; object-fit: cover;" alt="Python">
+                    <span class="position-absolute top-3 end-3 bg-danger text-white px-3 py-1 rounded-pill">30% OFF</span>
+                </div>
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0">Python Masterclass</h5>
+                        <span class="badge bg-success">Beginner</span>
+                    </div>
+                    <p class="text-muted small">Learn Python from scratch to advanced with projects</p>
+                    
+                    <!-- Rating -->
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="goldstar me-2">★★★★★</div>
+                        <span class="text-muted">(4.8/5)</span>
+                        <span class="ms-auto text-muted">2.5k students</span>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="bg-light rounded-pill px-3 py-1 small">📹 40 hours</span>
+                        <span class="bg-light rounded-pill px-3 py-1 small">🏆 Certificate</span>
+                        <span class="bg-light rounded-pill px-3 py-1 small">💻 Projects</span>
+                    </div>
+                    
+                    <!-- Price & CTA -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-decoration-line-through text-muted">₹9,999</span>
+                            <span class="h4 fw-bold text-danger ms-2">₹6,999</span>
+                        </div>
+                        <button class="btn btn-primary rounded-pill px-4">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more course cards similarly -->
+    </div>
+</div>
+
+<!-- Expert Instructors -->
+<div class="container-fluid py-5 bg-light">
+    <div class="container">
+        <h2 class="section-header">OUR EXPERT INSTRUCTORS</h2>
+        <div class="row g-4">
+            <!-- Instructor 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="instructor-card text-center bg-white rounded-4 p-4 shadow">
+                    <div class="position-relative mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle" width="120" height="120" alt="Instructor">
+                        <span class="position-absolute bottom-0 end-0 bg-success text-white p-2 rounded-circle">
+                            <i data-feather="check" width="16"></i>
+                        </span>
+                    </div>
+                    <h5 class="fw-bold">Dr. Rajesh Kumar</h5>
+                    <p class="text-muted small">Senior Python Developer, Ex-Google</p>
+                    <p class="small">15+ years experience</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <span class="badge bg-primary">Python</span>
+                        <span class="badge bg-primary">AI/ML</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more instructors -->
+        </div>
+    </div>
+</div>
+
+
+<!-- Success Stories -->
+<div class="container my-5">
+    <h2 class="section-header">STUDENT SUCCESS STORIES</h2>
+    <div class="row g-4">
+        <!-- Video Testimonial -->
+        <div class="col-lg-6">
+            <div class="position-relative rounded-4 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" class="w-100" alt="Students">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <button class="btn btn-danger rounded-circle p-4" style="width: 80px; height: 80px;">
+                        <i data-feather="play" class="text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="col-lg-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="bg-white p-4 rounded-4 text-center shadow">
+                        <h3 class="display-4 fw-bold text-primary">2500+</h3>
+                        <p class="text-muted">Students Placed</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="bg-white p-4 rounded-4 text-center shadow">
+                        <h3 class="display-4 fw-bold text-success">150+</h3>
+                        <p class="text-muted">Partner Companies</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="bg-white p-4 rounded-4 text-center shadow">
+                        <h3 class="display-4 fw-bold text-warning">95%</h3>
+                        <p class="text-muted">Success Rate</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="bg-white p-4 rounded-4 text-center shadow">
+                        <h3 class="display-4 fw-bold text-info">50+</h3>
+                        <p class="text-muted">Expert Trainers</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {% include "footer.html"%}
+</div>
+
+
+
+<!-- Course Curriculum Modal Preview -->
+<div class="container my-5">
+    <h2 class="section-header">COURSE CURRICULUM</h2>
+    <div class="accordion" id="courseCurriculum">
+        <!-- Module 1 -->
+        <div class="accordion-item border-0 mb-3 shadow-sm">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-white rounded-3" type="button" data-bs-toggle="collapse">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span class="fw-bold">Module 1: Python Basics</span>
+                        <span class="text-muted">6 hours • 5 topics</span>
+                    </div>
+                </button>
+            </h2>
+            <div class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✓ Introduction to Python</li>
+                        <li class="mb-2">✓ Variables & Data Types</li>
+                        <li class="mb-2">✓ Control Flow</li>
+                        <li class="mb-2 text-primary">▶ Preview Available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Certifications -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container text-white">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-4 fw-bold mb-4">Get Certified</h2>
+                <p class="lead mb-4">Industry recognized certificates that boost your career</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i data-feather="check-circle" class="me-2"></i> Government approved</li>
+                    <li class="mb-3"><i data-feather="check-circle" class="me-2"></i> Lifetime validity</li>
+                    <li class="mb-3"><i data-feather="check-circle" class="me-2"></i> Share on LinkedIn</li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://i.ibb.co/certificate-sample.png" class="img-fluid floating" alt="Certificate">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Companies -->
+<div class="container my-5">
+    <h2 class="section-header">OUR PLACEMENT PARTNERS</h2>
+    <div class="row g-4 align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-3 col-4">
+            <img src="https://logos-download.com/wp-content/uploads/2016/03/Google_Logo_2015.png" class="img-fluid grayscale hover:grayscale-0 transition" alt="Google">
+        </div>
+        <div class="col-lg-2 col-md-3 col-4">
+            <img src="https://logos-download.com/wp-content/uploads/2016/02/Microsoft_logo_2012.png" class="img-fluid grayscale" alt="Microsoft">
+        </div>
+        <!-- Add more logos -->
+    </div>
+</div>
+
+
+<!-- Tech Blog -->
+<div class="container my-5">
+    <h2 class="section-header">LATEST FROM TECH BLOG</h2>
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="blog-card bg-white rounded-4 shadow-sm overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500" class="w-100" style="height: 200px; object-fit: cover;">
+                <div class="p-4">
+                    <small class="text-primary">May 15, 2024</small>
+                    <h5 class="fw-bold my-2">Top 10 Python Libraries for AI</h5>
+                    <p class="text-muted small">Discover the most popular Python libraries...</p>
+                    <a href="#" class="text-decoration-none">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Call to Action -->
+    <div class="container my-5 py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-4 fw-bold" style="color: #ff6b6b;">Rolling Admissions Now Open</h2>
+                <h3 class="display-6 mb-4">Get In Touch Us to Discuss it:</h3>
+                <a href="tel:18002742240" class="text-decoration-none">
+                    <button class="btn-custom btn-lg">
+                        <i data-feather="phone" class="me-2"></i> 1800 2742 240
+                    </button>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://i.ibb.co/PYpkkG5/3study.png" class="img-fluid floating" alt="Study">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        feather.replace();
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.course-card, .custom-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+        
+        // Counter animation for stats
+        const stats = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const value = target.innerText.replace('+', '');
+                    let current = 0;
+                    const increment = value / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= value) {
+                            target.innerText = value + '+';
+                            clearInterval(timer);
+                        } else {
+                            target.innerText = Math.floor(current) + '+';
+                        }
+                    }, 20);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        stats.forEach(stat => statsObserver.observe(stat));
+    </script>
+</body>
+</html>
